@@ -5,8 +5,6 @@
 int main(int argc, char **argv, char **env){
     int i;
     int clk;
-    bool specialEn = 1;
-    int cycleBreak = 0;
 
 
     Verilated::commandArgs(argc, argv);
@@ -33,18 +31,8 @@ int main(int argc, char **argv, char **env){
             top->eval ();
         }
 
-       if(specialEn){
-        if(i ==9){
-            specialEn = 0;
-        }
-       }else{
-            cycleBreak++;
-            if(cycleBreak > 3){
-                specialEn = 1;
-            }
-       }
         top->rst = (i <2) | (i == 15);
-        top->en = (i>4) & specialEn;
+        top->en = (i>4);
     if (Verilated::gotFinish()) exit(0);
     }
     tfp->close();
