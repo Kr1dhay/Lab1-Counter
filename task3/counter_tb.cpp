@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **env){
     //init Vbuddy
     if (vbdOpen()!=1) return(-1);
     vbdHeader("Lab 1: Counter");
+    vbdSetMode(1)
 
     // initialize simulation inputs
     top->clk = 1;
@@ -44,7 +45,10 @@ int main(int argc, char **argv, char **env){
     vbdCycle(i+1);
     // -- end of Vbuddy output section
 
-    //change in
+    //change of input
+    if (vbdFlag()){
+        top->count = vbdValue()
+    }
 
 
         top->rst = (i <2) | (i == 15);

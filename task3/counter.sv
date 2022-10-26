@@ -9,7 +9,6 @@ module counter # (parameter WIDTH=8)
 
 always_ff @ (posedge clk, posedge rst)
     if(rst) count <= {WIDTH{1'b0}};
-    else if(en)   count <= count + {{WIDTH{1'1}}};
-    else count <= count - {{WIDTH{1'b0}}};
+    else count <= count + {{WIDTH-1{1'0}}, en};
 
 endmodule
